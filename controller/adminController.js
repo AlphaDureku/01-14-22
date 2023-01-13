@@ -10,7 +10,7 @@ const client = new twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 exports.test = async(req, res) => {
 
-    res.render('Secretary/login', { layout: 'layouts/secretary_layout' })
+    res.render('Secretary/Login', { layout: 'layouts/secretary_layout' })
 }
 
 
@@ -43,15 +43,10 @@ exports.dashboard = async(req, res) => {
     } else {
         req.session.doctor_ID = null;
     }
-    const startOfWeek = moment().startOf('week').toDate();
-    const endOfWeek = moment().endOf('week').toDate();
-    const startOfDay = moment().startOf('day').toDate();
-    const endOfDay = moment().endOf('day').toDate();
-    const startOfYear = moment().startOf('year').toDate();
-    const endOfYear = moment().endOf('year').toDate();
+
     const startOfMonth = moment().startOf('month').toDate();
     const endOfMonth = moment().endOf('month').toDate();
-    const patientAppointments = await doctor.fetchDoctorPatientAppointments(req.session.doctor_ID, startOfDay, endOfDay)
+    const patientAppointments = await doctor.fetchDoctorPatientAppointments(req.session.doctor_ID, startOfMonth, endOfMonth)
 
     res.render('Secretary/dashboard', {
         adminInfo: result,
