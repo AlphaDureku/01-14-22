@@ -546,16 +546,14 @@ exports.fetchDoctorPatientAppointments = async function(doctor_ID, startOfWhat, 
         }, {
             model: model.doctor_schedule_table,
             attributes: [],
-            where: {
-                doctor_schedule_date: {
-                    [Sequelize.Op.between]: [startOfWhat, endOfWhat]
-                }
-            },
+
 
         }],
         where: {
             doctor_ID: doctor_ID,
-
+            createdAt: {
+                [Sequelize.Op.between]: [startOfWhat, endOfWhat]
+            }
         }
     })
 }
@@ -613,16 +611,14 @@ exports.fetchDoctorPatientAppointmentsWithName = async function(doctor_ID, start
         }, {
             model: model.doctor_schedule_table,
             attributes: [],
-            where: {
-                doctor_schedule_date: {
-                    [Sequelize.Op.between]: [startOfWhat, endOfWhat]
-                }
-            },
+
 
         }],
         where: {
             doctor_ID: doctor_ID,
-
+            createdAt: {
+                [Sequelize.Op.between]: [startOfWhat, endOfWhat]
+            }
         }
     })
 }
