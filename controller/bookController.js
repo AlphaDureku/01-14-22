@@ -71,7 +71,7 @@ exports.generateOTP = function(req, res, next) {
 
 exports.userExists = async(req, res) => {
     req.session.patient_ID = req.body.choice
-    if (req.session.patient_ID != 'blank') {
+    if (req.session.patient_ID != '') {
         res.redirect('choose-doctor')
     } else {
         res.render('Services/patient-forms', { layout: 'layouts/sub', Title: Title.PatientInformation })
@@ -169,7 +169,7 @@ exports.getReceipt = async(req, res) => {
     req.session.patientModel.doctor_schedule_ID = req.query.doctor_schedule_ID
     const result = await patient.getReceipt(req.query.doctor_schedule_ID)
     console.log(result)
-    if (req.session.patient_ID != undefined && req.session.patient_ID != 'blank') {
+    if (req.session.patient_ID != undefined && req.session.patient_ID != '') {
         const checkIfConflict = await doctor.checkIfConflict(req.session.patient_ID, result[0].date)
         console.log(checkIfConflict)
         console.log(checkIfConflict.length)
@@ -191,8 +191,7 @@ exports.setAppointment = async(req, res) => {
     if (req.session.user_ID == null) {
         req.session.user_ID = await insert.insert_user(req.session.Patient.Email)
     }
-    console.log(req.session.patient_ID + 'HAHAHAHAH')
-    if (req.session.patient_ID == undefined || req.session.patient_ID == 'blank') {
+    if (req.session.patient_ID == undefined || req.session.patient_ID == '') {
         patientParams = {
             user_ID: req.session.user_ID.user_ID,
             Fname: req.session.patientModel.Fname,

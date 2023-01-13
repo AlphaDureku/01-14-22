@@ -5,6 +5,7 @@
                 <div class="col">
                     <p class="adsecpatientname ">Dr.
                         <%=data.DLname%>
+                            <%=data.DLname[0]%>.
                     </p>
                 </div>
                 <div class="col" data-bs-toggle="modal" data-bs-target="#<%=data.doctor_ID%>">
@@ -33,7 +34,7 @@
                                     <div class="row mb-3">
                                         <div class="col">
                                             <select class="form-select m-auto" aria-label="Default select example" id="whole1" name="doctorPair" disabled>
-                                                    <option value="<%=data.doctor_ID%>" >Dr. <%=data.DLname%></option>
+                                                    <option value="<%=data.doctor_ID%>" >Dr. <%=data.DLname%>, <%=data.DLname[0]%>.</option>
                                                 </select>
                                         </div>
                                         <div class="col">
