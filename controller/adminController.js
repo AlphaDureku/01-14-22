@@ -44,9 +44,9 @@ exports.dashboard = async(req, res) => {
         req.session.doctor_ID = null;
     }
 
-    const startOfMonth = moment().startOf('month').toDate();
-    const endOfMonth = moment().endOf('month').toDate();
-    const patientAppointments = await doctor.fetchDoctorPatientAppointments(req.session.doctor_ID, startOfMonth, endOfMonth)
+    const startOfDay = moment().startOf('day').toDate();
+    const endOfDay = moment().endOf('day').toDate();
+    const patientAppointments = await doctor.fetchDoctorPatientAppointments(req.session.doctor_ID, startOfDay, endOfDay)
 
     res.render('Secretary/dashboard', {
         adminInfo: result,
